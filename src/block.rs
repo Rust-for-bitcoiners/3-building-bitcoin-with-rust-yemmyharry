@@ -34,3 +34,23 @@ struct TxOut {
 
 // Try to include bitcoin related functionalities like serialization, computing addresses etc.,
 // You can add your own methods for different types and associated unit tests
+
+
+impl BlockChain {
+    fn new() -> Self {
+        BlockChain { blocks: List::new() }
+    }
+
+    fn add_blocks(&mut self, block: Block) {
+        self.blocks.push_back(block)
+    }
+
+    fn get_blocks_by_height(&self, height: usize) -> Option<&Block> {
+        self.blocks.iter().nth(height)
+    }
+
+
+    fn get_block_by_hash(&self, hash: &str) -> Option<&Block> {
+        self.blocks.iter().find(|block| block.hash == hash)
+    }
+}
